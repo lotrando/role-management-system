@@ -12,10 +12,10 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col">{{ __('Name') }}</th>
-          <th scope="col">{{ __('Email address') }}</th>
-          <th scope="col">{{ __('Created At') }}</th>
-          <th scope="col">{{ __('Updated At') }}</th>
+          <th scope="col">@sortablelink('name', __('Name'))</th>
+          <th scope="col">@sortablelink('email', __('Email address'))</th>
+          <th scope="col">@sortablelink('created_at', __('Created At'))</th>
+          <th scope="col">@sortablelink('updated_at', __('Updated At'))</th>
           <th scope="col">{{ __('Action') }}</th>
         </tr>
       </thead>
@@ -25,12 +25,13 @@
             <td>{{ $user->id }}</td>
             <td>{{ $user->name }}</td>
             <td>{{ $user->email }}</td>
-            <td>{{ $user->created_at }}</td>
-            <td>{{ $user->updated_at }}</td>
+            <td>{{ $user->created_at->format('d. m. Y') }}</td>
+            <td>{{ $user->updated_at->format('d. m. Y') }}</td>
             <td>
               <a class="btn btn-sm btn-primary" href="{{ route('admin.users.edit', $user->id) }}">{{ __('Edit') }}</a>
-              <button type="button" class="btn btn-sm btn-danger" onclick="event.preventDefault();
-              document.getElementById('delete-user-{{ $user->id }}')">
+              <button type="button" class="btn btn-sm btn-danger"
+                onclick="event.preventDefault();
+                document.getElementById('delete-user-{{ $user->id }}').submit()">
                 {{ __('Delete') }}
               </button>
               <form id="delete-user-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-none">
@@ -42,6 +43,6 @@
         @endforeach
       </tbody>
     </table>
-    {{ $users->links() }}
+    {!! $users->appends(\Request::except('page'))->render() !!}
   </div>
 @endsection

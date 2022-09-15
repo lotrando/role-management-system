@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.users.index', [
-            'users' => User::paginate(10),
+            'users' => User::sortable()->paginate(12),
         ]);
     }
 
@@ -83,6 +83,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        User::destroy($id);
+        return redirect(route('admin.users.index'));
     }
 }
