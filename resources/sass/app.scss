@@ -21,6 +21,18 @@ body{
   color: $text;
 }
 
+.table{
+  color: $text;
+}
+
+td{
+  vertical-align: middle;
+}
+
+th{
+  vertical-align: middle;
+}
+
 .navbar{
   margin-bottom: 2rem;
 }

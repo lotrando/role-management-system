@@ -21279,6 +21279,18 @@ body {
   color: #858585;
 }
 
+.table {
+  color: #858585;
+}
+
+td {
+  vertical-align: middle;
+}
+
+th {
+  vertical-align: middle;
+}
+
 .navbar {
   margin-bottom: 2rem;
 }
