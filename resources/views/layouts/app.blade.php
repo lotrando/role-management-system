@@ -11,49 +11,51 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark-blue shadow">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark-blue shadow">
     <div class="container">
-      <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
+      <a class="navbar-brand" href="@if (Auth::check()) dashboard @else/ @endif">
+        {{ config('app.name', 'Laravel') }}
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="Toggle navigation">
+        aria-label="{{ __('Toggle navigation') }}">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-lg-0 mb-2">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Users</a>
-          </li>
-          @auth
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                User
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Password</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Logout</a></li>
-              </ul>
-            </li>
-          @endauth
+        {{-- Left Side Of Navbar --}}
+        <ul class="navbar-nav me-auto">
+
         </ul>
-        @if (Route::has('login'))
-          <div class="d-flex gap-2">
-            @auth
-              <a href="{{ url('/home') }}">Home</a>
-            @else
-              <a class="btn btn-success" href="{{ route('login') }}">Log in</a>
-              @if (Route::has('register'))
-                <a class="btn btn-secondary" href="{{ route('register') }}">Register</a>
-              @endif
-            @endauth
-          </div>
-        @endif
+
+        {{-- Right Side Of Navbar --}}
+        <ul class="navbar-nav ms-auto">
+          {{-- Authentication Links --}}
+          @guest
+            @if (Route::has('login'))
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+              </li>
+            @endif
+
+            @if (Route::has('register'))
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+              </li>
+            @endif
+          @else
+            <li class="nav-item dropdown">
+              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ Auth::user()->name }}
+              </a>
+              <div class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="navbarDropdown">
+                {{-- Button trigger modal --}}
+                <button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logout">
+                  {{ __('Logout') }}
+                </button>
+              </div>
+            </li>
+          @endguest
+        </ul>
       </div>
     </div>
   </nav>
@@ -61,6 +63,31 @@
   <main class="container">
     @yield('content')
   </main>
+
+  {{-- Logout Modal --}}
+  <div class="modal fade" tabindex="-1" id="logout">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ __('Logout') }}</h5>
+          {{-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> --}}
+        </div>
+        <div class="modal-body">
+          <p class="text-center">{{ __('Are you sure ?') }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
+          <a role="button" class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+              document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+          </a>
+          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

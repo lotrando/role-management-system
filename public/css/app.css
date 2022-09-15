@@ -10864,9 +10864,17 @@ body {
 }
 
 .navbar {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .bg-dark-blue {
   background-color: #1a466e;
+}
+
+.modal-header {
+  border-bottom: 0;
+}
+
+.modal-footer {
+  border-top: 0;
 }

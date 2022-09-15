@@ -13,10 +13,18 @@ body{
 }
 
 .navbar{
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 
 .bg-dark-blue{
   background-color: $navBar;
+}
+
+.modal-header{
+  border-bottom: 0;
+}
+
+.modal-footer{
+  border-top: 0;
 }
 
