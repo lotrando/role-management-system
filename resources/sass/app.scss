@@ -1,1 +1,22 @@
 @import "~bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+$navBar: #1a466e;
+$background: #d1d1d1;
+$text: #858585;
+
+body{
+  font-family: 'Roboto Condensed';
+  background-color: $background;
+  color: $text;
+}
+
+.navbar{
+  margin-bottom: 1rem;
+}
+
+.bg-dark-blue{
+  background-color: $navBar;
+}
+
