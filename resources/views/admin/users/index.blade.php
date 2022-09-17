@@ -39,7 +39,6 @@
                   document.getElementById('delete-user-{{ $user->id }}').submit()">
                   {{ __('Delete') }}
                 </button>
-                <a type="button" class="btn btn-sm btn-info" href="{{ route('admin.users.show', $user->id) }}">{{ __('Show') }}</a>
                 <form id="delete-user-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-none">
                   @csrf
                   @method('DELETE')
@@ -49,7 +48,7 @@
           </tr>
         @endforeach
       </tbody>
-    </table>
+    </table>    
     {!! $users->appends(\Request::except('page'))->render() !!}
   </div>
 @endsection

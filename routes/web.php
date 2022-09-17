@@ -22,10 +22,10 @@ Route::get('/', function () {
 // User routes
 Route::get('dashboard', function () {
     return view('dashboard');
-})->middleware('auth')->name('dashboard');
+})->name('dashboard');
 
 // Admin route group
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('/users', UserController::class);
     Route::resource('/roles', RoleController::class);
 });
