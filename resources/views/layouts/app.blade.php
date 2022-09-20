@@ -12,12 +12,14 @@
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark-blue shadow">
-    <div class="container">
+    <div class="container-fluid">
       <a class="navbar-brand" href="@if (Auth::check()) dashboard @else/ @endif">
         {{ config('app.name', 'Laravel') }}
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-        aria-label="{{ __('Toggle navigation') }}">
+      <button class="navbar-toggler" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" type="button"
+              aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="{{ __('Toggle navigation') }}">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -49,7 +51,8 @@
             @endif
           @else
             <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown"
+                 href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 {{ Auth::user()->name }}
               </a>
               <div class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="navbarDropdown">
@@ -65,12 +68,12 @@
     </div>
   </nav>
 
-  <main class="container">
+  <main class="container-fluid">
     @yield('content')
   </main>
 
   {{-- Logout Modal --}}
-  <div class="modal fade" tabindex="-1" id="logout">
+  <div class="modal fade" id="logout" tabindex="-1">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -81,12 +84,14 @@
           <p class="text-center">{{ __('Are you sure ?') }}</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('Close') }}</button>
-          <a role="button" class="btn btn-danger" href="{{ route('logout') }}" onclick="event.preventDefault();
+          <button class="btn btn-secondary" data-bs-dismiss="modal"
+                  type="button">{{ __('Close') }}</button>
+          <a class="btn btn-danger" href="{{ route('logout') }}" role="button"
+             onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
           </a>
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          <form class="d-none" id="logout-form" action="{{ route('logout') }}" method="POST">
             @csrf
           </form>
         </div>

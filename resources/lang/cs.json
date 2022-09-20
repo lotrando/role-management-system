@@ -6,9 +6,13 @@
   "Logout": "Odhlásit",
   "Close": "Zavřít",
   "Name": "Jméno",
+  "Created": "Vytvořeno",
+  "Updated": "Aktualizace",
   "Register": "Registrovat",
   "Users": "Uživatelé",
   "Roles": "Role",
+  "Edit": "Upravit",
+  "Create": "Založit",
   "Are you sure ?": "Jste si jistý",
   "Dashboard": "Hlavní panel",
   "Back": "Zpět"

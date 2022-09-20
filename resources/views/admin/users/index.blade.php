@@ -14,11 +14,12 @@
           <th scope="col">#</th>
           <th scope="col">@sortablelink('name', __('Name'), ['filter' => 'visible'], ['class' => 'text-decoration-none text-muted'])</th>
           <th scope="col">@sortablelink('email', __('Email address'), ['filter' => 'visible'], ['class' => 'text-decoration-none text-muted'])</th>
-          <th scope="col">@sortablelink('created_at', __('Created At'), ['filter' => 'visible'], ['class' => 'text-decoration-none text-muted'])</th>
-          <th scope="col">@sortablelink('updated_at', __('Updated At'), ['filter' => 'visible'], ['class' => 'text-decoration-none text-muted'])</th>
+          <th scope="col">@sortablelink('created_at', __('Created'), ['filter' => 'visible'], ['class' => 'text-decoration-none text-muted'])</th>
+          <th scope="col">@sortablelink('updated_at', __('Updated'), ['filter' => 'visible'], ['class' => 'text-decoration-none text-muted'])</th>
           <th scope="col">
             <div class="d-grid">
-              <button role="button" class="btn btn-sm btn-block btn-success" href="{{ route('admin.users.create') }}">{{ __('Create') }}</button>
+              <a class="btn btn-sm btn-block btn-success" href="{{ route('admin.users.create') }}"
+                 role="button">{{ __('Create') }}</a>
             </div>
           </th>
         </tr>
@@ -33,13 +34,15 @@
             <td>{{ $user->updated_at->format('d. m. Y') }}</td>
             <td width="100px">
               <div class="w-100 d-flex gap-1">
-                <a type="button" class="btn btn-sm btn-primary" href="{{ route('admin.users.edit', $user->id) }}">{{ __('Edit') }}</a>
-                <button type="button" class="btn btn-sm btn-danger"
-                  onclick="event.preventDefault();
+                <a class="btn btn-sm btn-primary" type="button"
+                   href="{{ route('admin.users.edit', $user->id) }}">{{ __('Edit') }}</a>
+                <button class="btn btn-sm btn-danger" type="button"
+                        onclick="event.preventDefault();
                   document.getElementById('delete-user-{{ $user->id }}').submit()">
                   {{ __('Delete') }}
                 </button>
-                <form id="delete-user-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-none">
+                <form class="d-none" id="delete-user-{{ $user->id }}"
+                      action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                   @csrf
                   @method('DELETE')
                 </form>
@@ -48,7 +51,7 @@
           </tr>
         @endforeach
       </tbody>
-    </table>    
+    </table>
     {!! $users->appends(\Request::except('page'))->render() !!}
   </div>
 @endsection

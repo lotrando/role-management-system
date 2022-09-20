@@ -15,40 +15,40 @@ $navBar: #1a466e;
 $background: #d1d1d1;
 $text: #858585;
 
-body{
+body {
   font-family: 'Roboto Condensed';
   background-color: $background;
   color: $text;
 }
 
-.table{
+.table {
   color: $text;
 }
 
-td{
+td {
   vertical-align: middle;
 }
 
-th{
+th {
   vertical-align: middle;
 }
 
-.navbar{
-  margin-bottom: 2rem;
+.navbar {
+  margin-bottom: 1rem;
 }
 
-.bg-dark-blue{
+.bg-dark-blue {
   background-color: $navBar;
 }
 
-.modal-header{
+.modal-header {
   border-bottom: 0;
 }
 
-.modal-footer{
+.modal-footer {
   border-top: 0;
 }
 
-h1{
+h1 {
   margin-bottom: 0;
 }
