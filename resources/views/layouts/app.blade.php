@@ -70,6 +70,7 @@
   </nav>
 
   <main class="container-fluid">
+    @include('admin.users.partials.alerts')
     @yield('content')
   </main>
 

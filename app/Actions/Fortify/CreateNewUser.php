@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class CreateNewUser implements CreatesNewUsers
 {

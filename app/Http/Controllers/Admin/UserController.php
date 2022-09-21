@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class UserController extends Controller
 {
@@ -46,6 +47,10 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
         ]);
         $user->roles()->sync($request->roles);
+        Toastr::success('New user was created succesfull.');
+        /** Classic bootstrap alert or themed Toastr
+        $request->session()->flash('success', __('New user was created succesfull.'));
+         **/
         return redirect(route('admin.users.index'));
     }
 
@@ -86,6 +91,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($request->except(['_token', 'roles']));
         $user->roles()->sync($request->roles);
+        Toastr::success('User updated succesfull!');
+        // Classic bootstrap alert or themed Toastr
+        //$request->session()->flash('success', __('User updated succesfull.'));
         return redirect(route('admin.users.index'));
     }
 
@@ -95,9 +103,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         User::destroy($id);
+        Toastr::success('User deleted succesfull!');
+        // Classic bootstrap alert or themed Toastr
+        //$request->session()->flash('success', __('You have deleted the user.'));
         return redirect(route('admin.users.index'));
     }
 }

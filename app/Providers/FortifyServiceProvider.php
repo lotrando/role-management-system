@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use Yoeunes\Toastr\Facades\Toastr;
 
 class FortifyServiceProvider extends ServiceProvider
 {
