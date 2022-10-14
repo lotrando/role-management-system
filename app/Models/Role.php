@@ -10,7 +10,7 @@ class Role extends Model
 {
     use HasFactory;
 
-    public $fillable = ['name'];
+    protected $fillable = ['name'];
 
     public $timestamps = false;
 
